@@ -42,6 +42,13 @@ const sections = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt.",
     ],
   },
+  {
+    title: "section 4",
+    paragraphs: [
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt.",
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi fermentum metus faucibus lectus pharetra dapibus. Suspendisse potenti. Aenean aliquam elementum mi, ac euismod augue. Donec eget lacinia ex. Phasellus imperdiet porta orci eget mollis. Sed convallis sollicitudin mauris ac tincidunt.",
+    ],
+  },
 ];
 
 /**
@@ -97,6 +104,7 @@ let navListItems = navBarListWrapper.querySelectorAll("li");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
+
     if (entry && entry.intersectionRatio > 0) {
       let sectionId = entry.target.id;
       let section = entry.target;
