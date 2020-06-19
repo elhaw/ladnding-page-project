@@ -6,4 +6,4 @@ This project requires you to build a multi-section landing page, with a dynamica
 
 ### Project demo
 
-The project is published on GitHub Pages. To view, click on this link: [link to project]()
+The project is published on GitHub Pages. To view, click on this link: [link to project](https://elhaw.github.io/ladnding-page-project/)
