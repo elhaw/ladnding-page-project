@@ -105,7 +105,7 @@ let navListItems = navBarListWrapper.querySelectorAll("li");
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
 
-    if (entry && entry.intersectionRatio > 0) {
+    if ( entry.intersectionRatio > 0) {
       let sectionId = entry.target.id;
       let section = entry.target;
       navListItems.forEach((navItem) => {
@@ -133,7 +133,6 @@ let options = {
   threshold: 0.5,
 };
 
-sectionsToObserve.forEach((section) => observer.observe(section, options));
 /**
  * End Main Functions
  * Begin Events
@@ -144,7 +143,7 @@ sectionsToObserve.forEach((section) => observer.observe(section, options));
 
 // Scroll to section on link click
 
-const clickHandler = (evt) => {
+const navItemclickHandler = (evt) => {
   evt.stopPropagation();
   evt.preventDefault();
   const targetElement = evt.target;
@@ -158,6 +157,10 @@ const clickHandler = (evt) => {
   });
 };
 navList.forEach((item) => {
-  item.addEventListener("click", clickHandler);
+  item.addEventListener("click", navItemclickHandler);
 });
 // Set sections as active
+sectionsToObserve.forEach((section)=>{
+   console.log(section)
+  const sectionObserver =  observer.observe(section, options)
+});
