@@ -11,7 +11,7 @@ This project requires you to build a multi-section landing page, with a dynamica
 ## project description
 
 - Navigation is built dynamically as an unordered list.
-When clicking an item from the navigation menu, the link should scroll to the appropriate section.
+- When clicking an item from the navigation menu, the link should scroll to the appropriate section.
 
 
 
