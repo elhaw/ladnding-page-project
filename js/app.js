@@ -102,27 +102,6 @@ const allSections = sections.forEach(({ title, paragraphs }, index) => {
 let sectionsToObserve = sectionsWrapper.querySelectorAll("section");
 let navListItems = navBarListWrapper.querySelectorAll("li");
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    const sectionId = entry.target.id;
-    const section = document.getElementById(sectionId);
-    const navItem = document.querySelector(`[data-link=${sectionId}]`);
-    if (entry && entry.isIntersecting > 0) {
-      navItem.classList.add("active");
-      section.classList.add("active");
-    } else {
-      if (navItem.classList.contains("active")) {
-        navItem.classList.remove("active");
-      }
-
-      if (section.classList.contains("active")) {
-        section.classList.remove("active");
-
-      }
-    }
-  });
-});
-
 let options = {
   root: null,
   rootMargin: "0px",
@@ -156,8 +135,36 @@ navList.forEach((item) => {
   item.addEventListener("click", navItemclickHandler);
 });
 
+const firstSection = document.getElementById("section1");
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    const sectionId = entry.target.id;
+    const section = document.getElementById(sectionId);
+    const navItem = document.querySelector(`[data-link=${sectionId}]`);
+    if (entry.isIntersecting > 0) {
+      console.log(isVisible(section), section.id);
+      navItem.classList.add("active");
+      section.classList.add("active");
+    } else {
+      if (section.classList.contains("active")) {
+        section.classList.remove("active");
+      }
+      if (navItem.classList.contains("active")) {
+        navItem.classList.remove("active");
+      }
+    }
+  });
+});
 
+function isVisible(ele) {
+  const { top, bottom } = ele.getBoundingClientRect();
+  const vHeight = window.innerHeight || document.documentElement.clientHeight;
+
+  return (top > 0 || bottom > 0) && top < vHeight;
+}
+window.addEventListener("scroll", () => {
+  sectionsToObserve.forEach((section) => {
+    observer.observe(document.getElementById(section.id));
+  });
+});
 // Set sections as active
-sectionsToObserve.forEach(section => {
-  observer.observe(document.getElementById(section.id))
-})
