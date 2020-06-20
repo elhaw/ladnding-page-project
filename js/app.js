@@ -104,25 +104,21 @@ let navListItems = navBarListWrapper.querySelectorAll("li");
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
+    const sectionId = entry.target.id;
+    const section = document.getElementById(sectionId);
+    const navItem = document.querySelector(`[data-link=${sectionId}]`);
+    if (entry && entry.isIntersecting > 0) {
+      navItem.classList.add("active");
+      section.classList.add("active");
+    } else {
+      if (navItem.classList.contains("active")) {
+        navItem.classList.remove("active");
+      }
 
-    if ( entry.intersectionRatio > 0) {
-      let sectionId = entry.target.id;
-      let section = entry.target;
-      navListItems.forEach((navItem) => {
-        if (navItem.getAttribute("data-link") === sectionId) {
-          navItem.classList.add("active");
-          section.classList.add("active");
-        } else if (navItem.classList.contains("active")){
-        
-            navItem.classList.remove('active');
-            section.classList.remove('active')
-          
-        }
-        else {
-          navItem.classList.remove("active");
-          section.classList.remove("active");
-        }
-      });
+      if (section.classList.contains("active")) {
+        section.classList.remove("active");
+
+      }
     }
   });
 });
@@ -130,7 +126,7 @@ const observer = new IntersectionObserver((entries) => {
 let options = {
   root: null,
   rootMargin: "0px",
-  threshold: 0.5,
+  threshold: 0.6,
 };
 
 /**
@@ -159,8 +155,9 @@ const navItemclickHandler = (evt) => {
 navList.forEach((item) => {
   item.addEventListener("click", navItemclickHandler);
 });
+
+
 // Set sections as active
-sectionsToObserve.forEach((section)=>{
-   console.log(section)
-  const sectionObserver =  observer.observe(section, options)
-});
+sectionsToObserve.forEach(section => {
+  observer.observe(document.getElementById(section.id))
+})
