@@ -77,6 +77,7 @@ const navList = sections.map(({ title }, index) => {
   return navElement;
 });
 
+
 // Build sections
 const allSections = sections.forEach(({ title, paragraphs }, index) => {
   let sectionElement = document.createElement("section");
